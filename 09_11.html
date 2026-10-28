@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buongiorno 9 novembre</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pop: {
+                            purple: '#7C3AED',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            gray: '#1E293B',
+                            light: '#F8FAFC',
+                            red: '#DC2626'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Impact', 'Arial Black', 'sans-serif'],
+                        body: ['ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            snap-type: y mandatory;
+        }
+        section {
+            snap-align: start;
+            snap-stop: always;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1.5px #0F172A;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-pop-amber text-pop-dark font-body antialiased overflow-x-hidden">
+
+    <!-- SLIDE 1: ATTIVITÀ CHIARA ED INCLUSIVA (BG AMBER) -->
+    <section id="slide-1" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-amber relative border-b-8 border-pop-purple">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-black/20 pb-4">
+            <span class="text-xs md:text-sm uppercase font-black tracking-widest text-pop-dark bg-black/10 px-3 py-1 rounded-full">
+                LUNEDÌ 9 NOVEMBRE
+            </span>
+            <span class="text-xs md:text-sm font-mono text-black/60">01 / 04</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="my-auto max-w-5xl mx-auto space-y-6 text-left w-full">
+            <div class="inline-block bg-pop-purple text-white text-xs md:text-sm font-black uppercase px-3 py-1 -rotate-1">
+                🧍‍♂️ SPANZIO ALLA CONDIVISIONE (2 MIN)
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none text-pop-dark">
+                IL RISCATTO <br><span class="text-white text-stroke">DELLE BEATITUDINI</span>
+            </h1>
+
+            <!-- Box a 2 Passi Positivi -->
+            <div class="bg-black text-white p-6 md:p-8 rounded-2xl border-4 border-pop-purple shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] grid md:grid-cols-2 gap-6">
+                
+                <div class="bg-pop-gray p-5 rounded-xl border-2 border-white/20 space-y-2">
+                    <span class="bg-pop-amber text-pop-dark font-mono font-black text-xs px-2 py-0.5 rounded uppercase">PASSO 1</span>
+                    <h3 class="text-xl font-black text-white uppercase">Sguardo su di noi</h3>
+                    <p class="text-sm font-medium text-gray-300">
+                        Ognuno di noi ha momenti in cui si sente forte e momenti in cui ha bisogno d'aiuto: sono entrambi parte della nostra vita.
+                    </p>
+                </div>
+
+                <div class="bg-pop-gray p-5 rounded-xl border-2 border-pop-amber space-y-2">
+                    <span class="bg-pop-purple text-white font-mono font-black text-xs px-2 py-0.5 rounded uppercase">PASSO 2</span>
+                    <h3 class="text-xl font-black text-white uppercase">La promessa di Gesù</h3>
+                    <p class="text-sm font-medium text-gray-300">
+                        Gesù assicura che proprio quando ci sentiamo fragili o in difficoltà, Dio ci è più vicino e ci dona dignità.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-black/10 text-xs font-mono font-bold text-pop-dark">
+            <span>Ascolta la lettura...</span>
+            <a href="#slide-2" class="bg-black text-pop-amber px-3 py-1.5 font-black hover:bg-pop-purple hover:text-white transition flex items-center gap-1 uppercase">
+                LEGGI IL TESTO DEL VANGELO &darr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: TESTO DEL VANGELO (BG DARK) -->
+    <section id="slide-2" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">Lettura del Vangelo</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">Slide 2 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto space-y-6 w-full">
+            <div class="text-center space-y-1">
+                <span class="bg-pop-amber text-pop-dark font-mono font-black text-xs px-3 py-1 uppercase">DAL VANGELO SECONDO LUCA (6, 20-26)</span>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Box Beati col testo del Vangelo -->
+                <div class="bg-pop-gray text-white p-6 rounded-2xl border-4 border-pop-purple shadow-[8px_8px_0px_0px_rgba(124,58,237,1)] space-y-3">
+                    <span class="bg-pop-purple text-white font-black text-xs px-3 py-1 uppercase inline-block">✨ I BEATI</span>
+                    <ul class="space-y-2 font-bold text-sm md:text-base leading-snug">
+                        <li class="border-b border-white/10 pb-1.5">«Beati voi, poveri, perché vostro è il regno di Dio.»</li>
+                        <li class="border-b border-white/10 pb-1.5">«Beati voi, che ora avete fame, perché sarete saziati.»</li>
+                        <li class="border-b border-white/10 pb-1.5">«Beati voi, che ora piangete, perché riderete.»</li>
+                        <li>«Beati voi, quando vi odieranno... rallegratevi ed esultate.»</li>
+                    </ul>
+                </div>
+
+                <!-- Box Guai (Riletti come richiamo all'apertura) -->
+                <div class="bg-pop-gray text-white p-6 rounded-2xl border-4 border-pop-amber shadow-[8px_8px_0px_0px_rgba(245,158,11,1)] space-y-3">
+                    <span class="bg-pop-amber text-pop-dark font-black text-xs px-3 py-1 uppercase inline-block">⚠️ L'AVVERTIMENTO</span>
+                    <ul class="space-y-2 font-bold text-sm md:text-base text-gray-300 leading-snug">
+                        <li class="border-b border-white/10 pb-1.5">«Ma guai a voi, ricchi, perché avete già la vostra consolazione.»</li>
+                        <li class="border-b border-white/10 pb-1.5">«Guai a voi, che ora siete sazi, perché avrete fame.»</li>
+                        <li class="border-b border-white/10 pb-1.5">«Guai a voi, che ora ridete, perché sarete nel dolore.»</li>
+                        <li>«Guai, quando tutti diranno bene di voi.»</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-mono text-gray-400">
+            <a href="#slide-1" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-3" class="text-pop-amber font-black uppercase hover:underline">
+                CONTINUA &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: ATTUALIZZAZIONE ACCOGLIENTE (BG PURPLE) -->
+    <section id="slide-3" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-mono font-bold uppercase tracking-wider text-pop-amber">Spunto di Vita</span>
+            <span class="text-xs md:text-sm font-mono text-white/60">Slide 3 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto w-full grid md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 space-y-6">
+                <span class="bg-black text-pop-amber px-3 py-1 text-xs font-black uppercase">Oltre le Apparenze</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight">Accogliere le Fragilità</h2>
+
+                <div class="space-y-4 font-medium text-base">
+                    <div class="p-4 bg-black/40 border-l-4 border-pop-amber rounded-r-xl">
+                        <p class="text-sm md:text-lg font-bold text-white">
+                            Avere successo o stare bene non è una colpa: Gesù ci invita semplicemente a non chiuderci in noi stessi e a non dimenticare chi ha bisogno.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-black/40 border-l-4 border-white rounded-r-xl">
+                        <p class="text-sm md:text-lg font-bold text-white">
+                            In classe siamo una comunità vera quando sappiamo sostenerci a vicenda senza giudicarci.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-5 bg-black p-8 rounded-3xl border-2 border-pop-amber text-center space-y-4 shadow-[10px_10px_0px_0px_rgba(245,158,11,1)]">
+                <div class="text-xs font-mono uppercase text-pop-amber tracking-widest">// COSA IMPARIAMO</div>
+                <div class="text-2xl md:text-3xl font-black text-white uppercase font-sans">
+                    CRESCERE INSIEME
+                </div>
+                <p class="text-sm md:text-base text-gray-300 font-medium leading-relaxed">
+                    Nessuno si salva da solo: la vera ricchezza è saper chiedere aiuto e sapersi prendere cura degli altri.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-mono text-white/70">
+            <a href="#slide-2" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-4" class="text-pop-amber font-black uppercase hover:underline">Sintesi Finale &rarr;</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: PAROLA GUIDA (BG DARK) -->
+    <section id="slide-4" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">Parola di Vita</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">Slide 4 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-block bg-pop-amber text-pop-dark font-mono text-xs uppercase px-3 py-1 font-bold">
+                LUCA 6, 20
+            </div>
+
+            <blockquote class="bg-pop-gray p-8 md:p-12 rounded-3xl border-2 border-pop-amber shadow-[8px_8px_0px_0px_rgba(245,158,11,1)]">
+                <p class="text-3xl md:text-6xl font-black uppercase tracking-tight leading-tight text-white">
+                    "Beati voi, poveri, perché vostro è il regno di Dio."
+                </p>
+            </blockquote>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-bold uppercase">
+            <a href="#slide-3" class="hover:underline">&larr; Indietro</a>
+            <span class="bg-pop-amber text-pop-dark px-4 py-2 font-black">Buona giornata e buon inizio settimana! ✨</span>
+        </div>
+    </section>
+
+</body>
+</html>

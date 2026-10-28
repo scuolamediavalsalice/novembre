@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buongiorno 30 novembre</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tone.js per effetti audio -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pop: {
+                            purple: '#7C3AED',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            gray: '#1E293B',
+                            cyan: '#06B6D4',
+                            red: '#DC2626',
+                            green: '#10B981',
+                            pink: '#EC4899'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Impact', 'Arial Black', 'sans-serif'],
+                        body: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            snap-type: y mandatory;
+        }
+        section {
+            snap-align: start;
+            snap-stop: always;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 2px #F59E0B;
+            color: transparent;
+        }
+        .text-stroke-purple {
+            -webkit-text-stroke: 2px #7C3AED;
+            color: transparent;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.8) rotate(-3deg); opacity: 0; }
+            70% { transform: scale(1.05) rotate(1deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        .animate-pop {
+            animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+    </style>
+</head>
+<body class="bg-pop-dark text-white font-body antialiased overflow-x-hidden selection:bg-pop-amber selection:text-pop-dark">
+
+    <!-- SLIDE 1: CESTO DEGLI IMPEGNI - ASIMMETRICA POP & PULITA -->
+    <section id="slide-1" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-10 bg-pop-dark relative border-b-8 border-pop-amber">
+        
+        <!-- Header minimalista -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-3">
+            <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-pop-amber inline-block"></span>
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-pop-amber">
+                    30 NOVEMBRE
+                </span>
+            </div>
+            <span class="text-xs font-mono font-bold text-gray-400 bg-black/40 px-2.5 py-1 rounded-md">01 / 04</span>
+        </div>
+
+        <!-- Layout Principale: Due Colonne Asimmetriche -->
+        <div class="my-auto max-w-6xl mx-auto w-full grid md:grid-cols-12 gap-8 items-center py-4">
+            
+            <!-- Colonna Sinistra: Titolo Impattante e Essenziale -->
+            <div class="md:col-span-5 space-y-4 text-left">
+                <div class="inline-block bg-pop-amber text-pop-dark text-xs font-black uppercase px-3 py-1 rounded-full -rotate-1 shadow-md">
+                    ✨ CONCLUSIONE DEL MESE
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tight leading-none">
+                    IL NOSTRO <br>
+                    <span class="text-pop-amber text-stroke">IMPEGNO</span>
+                </h1>
+
+                <p class="text-base md:text-lg font-bold text-gray-200 leading-snug">
+                    Scegli o scrivi un gesto concreto da mettere nel cesto per chi ha più bisogno.
+                </p>
+
+                <!-- Counter Badge -->
+                <div class="inline-flex items-center gap-3 bg-black/80 px-4 py-2 rounded-2xl border border-pop-amber">
+                    <span class="text-2xl">🧺</span>
+                    <span class="text-xs font-bold text-gray-300 uppercase">
+                        Impegni raccolti: <strong id="ticket-count" class="text-pop-amber text-base font-mono">0</strong>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Colonna Destra: Cesto Interattivo Pulito -->
+            <div class="md:col-span-7 bg-pop-gray p-6 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] space-y-5">
+                
+                <!-- Display Biglietti Depositati -->
+                <div class="bg-black/80 p-5 rounded-2xl border-2 border-white/10 min-h-[160px] flex flex-col justify-between">
+                    <div id="tickets-container" class="flex flex-wrap gap-2.5 items-center justify-center min-h-[100px]">
+                        <span id="empty-state" class="text-sm font-bold text-gray-400 italic text-center">
+                            Fai clic su un'idea qui sotto o scrivi la tua per depositare il biglietto!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Input Personalizzato -->
+                <form id="ticket-form" onsubmit="addTicket(event)" class="flex gap-2">
+                    <input 
+                        type="text" 
+                        id="custom-ticket-input" 
+                        placeholder="Scrivi qui il tuo impegno..."
+                        class="flex-1 bg-black text-white px-4 py-3 rounded-xl border-2 border-white/30 text-sm font-bold placeholder-gray-400 focus:outline-none focus:border-pop-amber"
+                        maxlength="40"
+                    />
+                    <button 
+                        type="submit" 
+                        class="bg-pop-amber text-pop-dark font-black text-xs uppercase px-5 py-3 rounded-xl hover:bg-white transition flex items-center gap-1 shadow-md"
+                    >
+                        <span>INSERISCI</span>
+                    </button>
+                </form>
+
+                <!-- Quick Presets -->
+                <div class="space-y-2 pt-2 border-t border-white/10">
+                    <span class="text-xs font-mono text-gray-400 font-bold uppercase block">Spunti rapidi:</span>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="addPresetTicket('Offrire un sorriso')" class="bg-black/60 hover:bg-pop-amber hover:text-pop-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg border border-white/20 transition">"Offrire un sorriso"</button>
+                        <button onclick="addPresetTicket('Non isolare nessuno')" class="bg-black/60 hover:bg-pop-amber hover:text-pop-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg border border-white/20 transition">"Non isolare nessuno"</button>
+                        <button onclick="addPresetTicket('Ascoltare con pazienza')" class="bg-black/60 hover:bg-pop-amber hover:text-pop-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg border border-white/20 transition">"Ascoltare con pazienza"</button>
+                        <button onclick="addPresetTicket('Frenare le prese in giro')" class="bg-black/60 hover:bg-pop-amber hover:text-pop-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg border border-white/20 transition">"Frenare le prese in giro"</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-3 border-t border-white/10 text-xs font-bold uppercase">
+            <span class="text-gray-400">Dalle parole all'azione quotidiana</span>
+            <a href="#slide-2" class="bg-pop-amber text-pop-dark px-4 py-2 font-black hover:bg-white transition">
+                LO SGUARDO DI CRISTO &darr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: IO TI HO AMATO (BG PURPLE) -->
+    <section id="slide-2" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple text-white relative">
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">Lo Sguardo Evangelico</span>
+            <span class="text-xs md:text-sm font-mono text-white/60">02 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto w-full grid md:grid-cols-12 gap-8 items-stretch">
+            <div class="md:col-span-7 bg-black/60 p-8 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] flex flex-col justify-between space-y-6">
+                <div class="space-y-3">
+                    <span class="bg-pop-amber text-pop-dark font-mono font-black text-xs px-3 py-1 rounded-full uppercase">APOCALISSE 3,9</span>
+                    <h2 class="text-4xl md:text-6xl font-black uppercase text-white tracking-wide">
+                        «IO TI HO <br><span class="text-pop-amber">AMATO»</span>
+                    </h2>
+                </div>
+                <p class="text-base md:text-xl font-medium text-gray-200 leading-relaxed">
+                    Sul volto di ogni persona isolata o in difficoltà ritroviamo la bellezza e la presenza di Cristo stesso. Non siamo noi a fare un favore: è Lui che per primo posa il suo sguardo su di noi.
+                </p>
+            </div>
+
+            <div class="md:col-span-5 bg-black p-8 rounded-3xl border-2 border-white/20 flex flex-col justify-center space-y-4 text-left">
+                <span class="bg-pop-green text-pop-dark font-mono font-black text-xs px-3 py-1 rounded-full uppercase w-fit">LA SCUOLA SALESIANA</span>
+                <h3 class="text-2xl md:text-3xl font-black text-white uppercase tracking-wide">Una Casa Autentica</h3>
+                <p class="text-sm md:text-base font-medium text-gray-300 leading-relaxed">
+                    Valsalice è davvero una casa quando sa far sentire a ciascuno, soprattutto a chi fa più fatica: «Tu sei importante qui.»
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-bold uppercase">
+            <a href="#slide-1" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-3" class="bg-black text-pop-amber px-4 py-2 font-black hover:bg-pop-dark hover:text-white transition">
+                LO STILE DI DON BOSCO &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: CITAZIONE DON BOSCO (BG AMBER) -->
+    <section id="slide-3" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-amber text-pop-dark">
+        <div class="flex justify-between items-center border-b border-black/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-dark">Eredità Salesiana</span>
+            <span class="text-xs md:text-sm font-mono text-black/60">03 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <span class="bg-black text-pop-amber px-4 py-1.5 text-xs font-black uppercase rounded-full">
+                IL SEGRETO DI VALDOCCO
+            </span>
+
+            <blockquote class="bg-black text-white p-8 md:p-12 rounded-3xl border-4 border-pop-purple shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] space-y-6">
+                <p class="text-2xl md:text-4xl font-black uppercase leading-tight text-pop-amber tracking-wide">
+                    «Non basta amare i giovani, occorre che essi si accorgano di essere amati.»
+                </p>
+                <p class="text-sm md:text-base font-medium text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                    Novembre si chiude, ma la nostra missione quotidiana continua: costruire ogni giorno un clima di famiglia in cui nessuno si senta solo.
+                </p>
+            </blockquote>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-black/10 text-xs font-bold text-black">
+            <a href="#slide-2" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-4" class="bg-black text-pop-amber px-4 py-2 font-black uppercase hover:bg-pop-purple hover:text-white transition">
+                MANDATO PER IL FUTURO &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: MANDATO E CONCLUSIONE (BG DARK) -->
+    <section id="slide-4" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">Mandato Finale</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">04 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-block bg-pop-amber text-pop-dark font-mono text-xs uppercase px-3 py-1 font-bold rounded">
+                IL NOSTRO CAMMINO CONTINUA
+            </div>
+
+            <div class="bg-pop-gray p-8 md:p-12 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] space-y-4">
+                <p class="text-3xl md:text-5xl font-black uppercase tracking-wide leading-tight text-white">
+                    Custodisci l'impegno<br>preso oggi.
+                </p>
+                <p class="text-sm md:text-base font-bold text-pop-amber uppercase pt-4 border-t border-white/10 tracking-wide">
+                    Diventa ogni giorno testimone di uno sguardo <br>che accoglie, sostiene e costruisce comunità.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-bold uppercase">
+            <a href="#slide-3" class="hover:underline">&larr; Indietro</a>
+            <span class="bg-pop-amber text-pop-dark px-4 py-2 font-black">Grazie per il cammino fatto insieme! ✨</span>
+        </div>
+    </section>
+
+    <!-- Logica Interattiva Audio & Confetti -->
+    <script>
+        let ticketCount = 0;
+        let synth = null;
+
+        function initAudio() {
+            if (!synth && typeof Tone !== 'undefined') {
+                synth = new Tone.Synth({
+                    oscillator: { type: 'triangle' },
+                    envelope: { attack: 0.005, decay: 0.1, sustain: 0.1, release: 0.2 }
+                }).toDestination();
+            }
+        }
+
+        function playPopSound() {
+            try {
+                initAudio();
+                if (synth && Tone.context.state === 'running') {
+                    const notes = ['E5', 'G5', 'B5', 'D6'];
+                    const note = notes[Math.floor(Math.random() * notes.length)];
+                    synth.triggerAttackRelease(note, '16n');
+                }
+            } catch(e) {}
+        }
+
+        function addTicketToBasket(text) {
+            const container = document.getElementById('tickets-container');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (emptyState) {
+                emptyState.style.display = 'none';
+            }
+
+            const colors = [
+                'bg-pop-amber text-pop-dark border-white',
+                'bg-pop-purple text-white border-pop-amber',
+                'bg-pop-green text-pop-dark border-white',
+                'bg-white text-pop-dark border-pop-purple'
+            ];
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+            const ticket = document.createElement('div');
+            ticket.className = `${randomColor} px-3.5 py-1.5 rounded-xl border-2 font-bold text-xs md:text-sm shadow-md animate-pop flex items-center gap-1.5 cursor-default`;
+            ticket.innerHTML = `<span>📜 "${text}"</span>`;
+
+            container.appendChild(ticket);
+
+            ticketCount++;
+            document.getElementById('ticket-count').innerText = ticketCount;
+
+            playPopSound();
+
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 25,
+                    spread: 60,
+                    origin: { y: 0.7 }
+                });
+            }
+        }
+
+        function addTicket(e) {
+            e.preventDefault();
+            const input = document.getElementById('custom-ticket-input');
+            const val = input.value.trim();
+            if (val.length > 0) {
+                addTicketToBasket(val);
+                input.value = '';
+            }
+        }
+
+        function addPresetTicket(text) {
+            addTicketToBasket(text);
+        }
+    </script>
+</body>
+</html>

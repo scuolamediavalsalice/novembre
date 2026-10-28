@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buongiorno 24 novembre</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tone.js for web audio -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pop: {
+                            purple: '#7C3AED',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            gray: '#1E293B',
+                            cyan: '#06B6D4',
+                            light: '#F8FAFC',
+                            red: '#DC2626'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Impact', 'Arial Black', 'sans-serif'],
+                        body: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            snap-type: y mandatory;
+        }
+        section {
+            snap-align: start;
+            snap-stop: always;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1.5px #06B6D4;
+            color: transparent;
+        }
+        @keyframes floatWord {
+            0% { transform: scale(0.8) translateY(15px); opacity: 0; }
+            50% { transform: scale(1.03) translateY(-3px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .animate-word {
+            animation: floatWord 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+    </style>
+</head>
+<body class="bg-pop-dark text-white font-body antialiased overflow-x-hidden">
+
+    <!-- SLIDE 1: MEGAFONO DELLE PAROLE (BG DARK) -->
+    <section id="slide-1" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark relative border-b-8 border-pop-cyan">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm uppercase font-black tracking-widest text-pop-cyan bg-white/10 px-3 py-1 rounded-full">
+                MARTEDÌ 24 NOVEMBRE
+            </span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">01 / 04</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="my-auto max-w-5xl mx-auto space-y-6 w-full text-center">
+            
+            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none">
+                IL MEGAFONO DELLE <br><span class="text-pop-cyan text-stroke">PAROLE</span>
+            </h1>
+
+            <p class="text-base md:text-xl font-bold text-gray-200 max-w-2xl mx-auto leading-relaxed">
+                Rimani per 10 secondi in silenzio con la mano davanti alla bocca. <br>Che parola vorresti sentirti dire nei momenti di difficoltà?
+            </p>
+
+            <!-- Container Megafono -->
+            <div class="bg-pop-gray p-6 md:p-8 rounded-3xl border-4 border-pop-cyan shadow-[10px_10px_0px_0px_rgba(6,182,212,1)] text-left space-y-6">
+                
+                <!-- Megaphone Stream Display -->
+                <div class="bg-black/70 p-4 md:p-6 rounded-2xl border-2 border-white/20 min-h-[180px] flex flex-col justify-between">
+                    <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl">📣</span>
+                            <span class="text-xs font-bold text-pop-cyan uppercase tracking-wider">
+                                Le parole raccolte dalla classe (<span id="word-count">0</span>)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Parole Inserite -->
+                    <div id="words-container" class="flex flex-wrap gap-3 items-center justify-center min-h-[100px] p-2">
+                        <span id="empty-state" class="text-sm font-bold text-gray-400 italic text-center">
+                            Aggiungi una parola o sceglila dai suggerimenti qui sotto!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Input e Pulsante -->
+                <div class="space-y-4">
+                    <form id="word-form" onsubmit="addWord(event)" class="flex flex-col sm:flex-row gap-3">
+                        <input 
+                            type="text" 
+                            id="custom-word-input" 
+                            placeholder="Scrivi qui la tua parola (es. Ti ascolto, Ci sono io, Scusa)..."
+                            class="flex-1 bg-black text-white px-5 py-3.5 rounded-2xl border-2 border-white/30 text-base font-bold placeholder-gray-400 focus:outline-none focus:border-pop-cyan"
+                            maxlength="30"
+                        />
+                        <button 
+                            type="submit" 
+                            class="bg-pop-cyan text-pop-dark font-bold text-base uppercase px-8 py-3.5 rounded-2xl hover:bg-white transition-all transform active:scale-95 shadow-lg flex items-center justify-center gap-2"
+                        >
+                            <span>Dillo al Megafono</span>
+                            <span class="text-lg">📣</span>
+                        </button>
+                    </form>
+
+                    <!-- Presets veloci -->
+                    <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10">
+                        <span class="text-xs font-bold text-gray-400 uppercase">Oppure seleziona:</span>
+                        <button onclick="addPreset('Ti ascolto')" class="bg-black/60 hover:bg-pop-cyan hover:text-pop-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-xl border border-white/20 transition">"Ti ascolto"</button>
+                        <button onclick="addPreset('Non temere')" class="bg-black/60 hover:bg-pop-cyan hover:text-pop-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-xl border border-white/20 transition">"Non temere"</button>
+                        <button onclick="addPreset('Ci sono io')" class="bg-black/60 hover:bg-pop-cyan hover:text-pop-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-xl border border-white/20 transition">"Ci sono io"</button>
+                        <button onclick="addPreset('Scusa')" class="bg-black/60 hover:bg-pop-cyan hover:text-pop-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-xl border border-white/20 transition">"Scusa"</button>
+                        <button onclick="addPreset('Sei importante')" class="bg-black/60 hover:bg-pop-cyan hover:text-pop-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-xl border border-white/20 transition">"Sei importante"</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-bold uppercase">
+            <span class="text-gray-400">Gridare in silenzio non è più necessario</span>
+            <a href="#slide-2" class="bg-pop-cyan text-pop-dark px-4 py-2 font-black hover:bg-white transition">
+                CHI SONO I POVERI DI PAROLE? &darr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: COMPRENDERE LA POVERTÀ DI PAROLE (BG PURPLE) -->
+    <section id="slide-2" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-cyan">Riflessione Guidata</span>
+            <span class="text-xs md:text-sm font-mono text-white/60">02 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-8 items-center">
+            
+            <!-- Card 1: La Sofferenza del Silenzio -->
+            <div class="bg-black/40 p-8 rounded-3xl border-2 border-white/20 space-y-4">
+                <span class="bg-pop-red text-white font-mono font-black text-xs px-3 py-1 rounded-full uppercase">L'OSTACOLO</span>
+                <h3 class="text-2xl md:text-4xl font-black text-white uppercase">Sentirsi Bloccati</h3>
+                <p class="text-base text-gray-200 font-medium leading-relaxed">
+                    Una delle povertà più dolorose è non trovare le parole per chiedere aiuto: quando abbiamo paura di essere presi in giro o quando gridiamo dentro di noi e nessuno se ne accorge.
+                </p>
+            </div>
+
+            <!-- Card 2: L'Ascolto Salesiano -->
+            <div class="bg-black p-8 rounded-3xl border-4 border-pop-cyan shadow-[10px_10px_0px_0px_rgba(6,182,212,1)] space-y-4">
+                <span class="bg-pop-cyan text-pop-dark font-mono font-black text-xs px-3 py-1 rounded-full uppercase">LO SGUARDO SALESIANO</span>
+                <h3 class="text-2xl md:text-4xl font-black text-pop-cyan uppercase">Farsi Orecchio</h3>
+                <p class="text-base text-gray-200 font-medium leading-relaxed">
+                    Gesù e Don Bosco si fermavano sempre ad ascoltare chi non aveva voce. Essere vicini significa imparare a prestare l'orecchio a chi è timido, a chi sta in disparte e a chi non riesce a difendersi.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-bold uppercase">
+            <a href="#slide-1" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-3" class="bg-black text-pop-cyan px-4 py-2 font-black hover:bg-pop-dark hover:text-white transition">
+                LA PAROLA ALL'ORECCHIO &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: LA PAROLA ALL'ORECCHIO (BG AMBER) -->
+    <section id="slide-3" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-amber text-pop-dark">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-black/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-dark">Spunto Salesiano</span>
+            <span class="text-xs md:text-sm font-mono text-black/60">03 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <span class="bg-black text-pop-cyan px-4 py-1.5 text-xs font-black uppercase rounded-full">
+                LO STILE DI DON BOSCO
+            </span>
+
+            <blockquote class="bg-black text-white p-8 md:p-12 rounded-3xl border-4 border-pop-purple shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] space-y-4">
+                <p class="text-2xl md:text-4xl font-black uppercase leading-tight text-pop-cyan">
+                    Basta una sola parola detta al momento giusto per ridare speranza a chi si sente perso.
+                </p>
+                <p class="text-sm md:text-base font-medium text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                    Don Bosco usava la celebre "parola all'orecchio": un sussurro confidenziale e discreto che faceva sentire ogni ragazzo unico e compreso.
+                </p>
+            </blockquote>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-black/10 text-xs font-bold text-black">
+            <a href="#slide-2" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-4" class="bg-black text-pop-cyan px-4 py-2 font-black uppercase hover:bg-pop-purple hover:text-white transition">
+                LA SFIDA DI OGGI &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: SFIDA DELLA GIORNATA (BG DARK) -->
+    <section id="slide-4" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-cyan">Passo Concreto</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">04 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-block bg-pop-cyan text-pop-dark font-mono text-xs uppercase px-3 py-1 font-bold rounded">
+                IMPEGNO PER OGGI
+            </div>
+
+            <div class="bg-pop-gray p-8 md:p-12 rounded-3xl border-4 border-pop-cyan shadow-[10px_10px_0px_0px_rgba(6,182,212,1)] space-y-4">
+                <p class="text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight text-white">
+                    Sii "voce" per chi non ne ha.
+                </p>
+             
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-bold uppercase">
+            <a href="#slide-3" class="hover:underline">&larr; Indietro</a>
+            <span class="bg-pop-cyan text-pop-dark px-4 py-2 font-black">Buona giornata e buon ascolto! ✨</span>
+        </div>
+    </section>
+
+    <!-- Interactive Script Logic -->
+    <script>
+        let wordCount = 0;
+        let audioSynth = null;
+
+        function initAudio() {
+            if (!audioSynth && typeof Tone !== 'undefined') {
+                audioSynth = new Tone.Synth({
+                    oscillator: { type: 'sine' },
+                    envelope: { attack: 0.01, decay: 0.1, sustain: 0.2, release: 0.2 }
+                }).toDestination();
+            }
+        }
+
+        function playPopSound() {
+            try {
+                initAudio();
+                if (audioSynth && Tone.context.state === 'running') {
+                    const notes = ['C5', 'E5', 'G5', 'C6'];
+                    const note = notes[Math.floor(Math.random() * notes.length)];
+                    audioSynth.triggerAttackRelease(note, '8n');
+                }
+            } catch (e) {
+                console.log('Audio playback ignored');
+            }
+        }
+
+        function addWordToStream(text) {
+            const container = document.getElementById('words-container');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (emptyState) {
+                emptyState.style.display = 'none';
+            }
+
+            const colors = [
+                'bg-pop-cyan text-pop-dark border-white',
+                'bg-pop-amber text-pop-dark border-white',
+                'bg-pop-purple text-white border-pop-cyan',
+                'bg-white text-pop-dark border-pop-cyan'
+            ];
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+            const badge = document.createElement('div');
+            badge.className = `${randomColor} px-4 py-2 rounded-2xl border-2 font-bold text-sm md:text-base shadow-md animate-word flex items-center gap-2 transform hover:scale-105 transition-transform cursor-default`;
+            badge.innerHTML = `<span>💬 "${text}"</span>`;
+
+            container.appendChild(badge);
+
+            wordCount++;
+            document.getElementById('word-count').innerText = wordCount;
+
+            playPopSound();
+
+            if (wordCount >= 5 && typeof confetti === 'function') {
+                confetti({
+                    particleCount: 25,
+                    spread: 60,
+                    origin: { y: 0.7 }
+                });
+            }
+        }
+
+        function addWord(e) {
+            e.preventDefault();
+            const input = document.getElementById('custom-word-input');
+            const val = input.value.trim();
+            if (val.length > 0) {
+                addWordToStream(val);
+                input.value = '';
+            }
+        }
+
+        function addPreset(text) {
+            addWordToStream(text);
+        }
+    </script>
+</body>
+</html>

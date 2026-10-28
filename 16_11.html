@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buongiorno 16 Novembre - Povertà Culturale ed Educativa</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pop: {
+                            purple: '#7C3AED',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            gray: '#1E293B',
+                            light: '#F8FAFC',
+                            red: '#DC2626'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Impact', 'Arial Black', 'sans-serif'],
+                        body: ['ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            snap-type: y mandatory;
+        }
+        section {
+            snap-align: start;
+            snap-stop: always;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1.5px #F59E0B;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-pop-purple text-white font-body antialiased overflow-x-hidden">
+
+    <!-- SLIDE 1: ATTIVITÀ DINAMICA "IL BLOCCO DI PARTENZA" (BG PURPLE) -->
+    <section id="slide-1" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple relative border-b-8 border-pop-amber">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm uppercase font-black tracking-widest text-pop-amber bg-black/30 px-3 py-1 rounded-full">
+                LUNEDÌ 16 NOVEMBRE
+            </span>
+            <span class="text-xs md:text-sm font-mono text-white/60">01 / 04</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="my-auto max-w-5xl mx-auto space-y-6 text-left w-full">
+            <div class="inline-block bg-black text-pop-amber text-xs md:text-sm font-black uppercase px-3 py-1 -rotate-1">
+                👟 ATTIVITÀ ESPERIENZIALE            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none">
+                IL BLOCCO DI <br><span class="text-pop-amber text-stroke">PARTENZA</span>
+            </h1>
+
+            <!-- Grid Sequenziale in 3 Step -->
+            <div class="grid md:grid-cols-3 gap-4">
+                
+                <div class="bg-black/60 p-5 rounded-2xl border-2 border-pop-amber space-y-2 relative overflow-hidden">
+                    <span class="text-3xl font-black text-pop-amber/30 absolute top-2 right-3 font-sans">01</span>
+                    <span class="bg-pop-amber text-pop-dark font-mono font-black text-xs px-2 py-0.5 rounded uppercase block w-fit">A COPPIE</span>
+                    <h3 class="text-lg font-black text-white uppercase">Compagni</h3>
+                    <p class="text-xs md:text-sm text-gray-200">
+                        Girati verso il tuo compagno di banco per un confronto diretto di 2 minuti.
+                    </p>
+                </div>
+
+                <div class="bg-black/60 p-5 rounded-2xl border-2 border-white/30 space-y-2 relative overflow-hidden">
+                    <span class="text-3xl font-black text-white/20 absolute top-2 right-3 font-sans">02</span>
+                    <span class="bg-white text-pop-dark font-mono font-black text-xs px-2 py-0.5 rounded uppercase block w-fit">CONFRONTO</span>
+                    <h3 class="text-lg font-black text-pop-amber uppercase">Opportunità</h3>
+                    <p class="text-xs md:text-sm text-gray-200">
+                        Quali opportunità quotidiane hai (sport, musica, libri, viaggi, scuola) che dai per scontate?
+                    </p>
+                </div>
+
+                <div class="bg-pop-dark p-5 rounded-2xl border-2 border-pop-amber space-y-2 relative overflow-hidden">
+                    <span class="text-3xl font-black text-pop-amber/30 absolute top-2 right-3 font-sans">03</span>
+                    <span class="bg-pop-purple text-white font-mono font-black text-xs px-2 py-0.5 rounded uppercase block w-fit">PRESA DI COSCIENZA</span>
+                    <h3 class="text-lg font-black text-white uppercase">Mancanze</h3>
+                    <p class="text-xs md:text-sm text-gray-200">
+                        Cosa succede a un ragazzo a cui viene tolta la possibilità di scoprire e far fiorire i propri talenti?
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-mono text-white/70">
+            <span>Dalla tua esperienza alla realtà globale...</span>
+            <a href="#slide-2" class="bg-black text-pop-amber px-3 py-1.5 font-black hover:bg-pop-dark hover:text-white transition flex items-center gap-1 uppercase">
+                APPROFONDISCI &darr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: COSA SIGNIFICA POVERTÀ EDUCATIVA (BG AMBER) -->
+    <section id="slide-2" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-amber text-pop-dark">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-black/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-dark">Riflessione Guidata</span>
+            <span class="text-xs md:text-sm font-mono text-black/60">Slide 2 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto space-y-8 w-full">
+            <div class="text-center space-y-2">
+                <span class="bg-black text-pop-amber font-mono font-black text-xs px-3 py-1 uppercase">DEFINIZIONE CHIAVE</span>
+                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tight text-pop-dark">
+                    LA POVERTÀ CHE <span class="bg-black text-pop-amber px-2">NON SI VEDE</span>
+                </h2>
+            </div>
+
+            <div class="bg-black text-white p-6 md:p-8 rounded-3xl border-4 border-pop-purple shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] space-y-6">
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-3">
+                        <span class="text-xs font-mono text-pop-amber font-bold uppercase block">// NON SOLO SOLDI</span>
+                        <h3 class="text-2xl font-black text-pop-amber uppercase">
+                            Privazione di Futuro
+                        </h3>
+                        <p class="text-sm md:text-base font-medium text-gray-200 leading-relaxed">
+                            La povertà educativa non riguarda solo la mancanza di mezzi economici, ma la privazione del diritto di apprendere, sperimentare, sviluppare capacita e coltivare i propri sogni.
+                        </p>
+                    </div>
+
+                    <div class="bg-pop-dark p-6 rounded-2xl border-2 border-white/20 space-y-3 text-center">
+                        <span class="text-xs font-mono text-pop-amber uppercase font-bold block">🚫 LE CONSEGUENZE</span>
+                        <p class="text-sm md:text-base font-bold text-white">
+                            Quando a un giovane si negano la cultura, il gioco, la musica e la lettura, gli si sta togliendo la possibilità di scegliere chi diventare.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-black/10 text-xs font-bold text-black">
+            <a href="#slide-1" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-3" class="bg-black text-pop-amber px-4 py-2 font-black uppercase hover:bg-pop-purple hover:text-white transition">
+                APPROFONDIMENTO TEORICO &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: AMARTYA SEN & LA TEORIA DELLE CAPACITÀ (BG DARK) -->
+    <section id="slide-3" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-mono font-bold uppercase tracking-wider text-pop-amber">Inquadramento Teorico</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">Slide 3 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto w-full grid md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 space-y-6">
+                <span class="bg-pop-amber text-pop-dark px-3 py-1 text-xs font-black uppercase">AMARTYA SEN (PREMIO NOBEL)</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight">La Teoria delle Capacità</h2>
+
+                <div class="space-y-4 font-medium text-base">
+                    <div class="p-4 bg-pop-gray border-l-4 border-pop-purple rounded-r-xl">
+                        <p class="text-sm md:text-lg font-bold text-white">
+                            La vera ricchezza di una persona si misura dalla reale libertà e possibilità di far fiorire i propri talenti.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-pop-gray border-l-4 border-pop-amber rounded-r-xl">
+                        <p class="text-sm md:text-lg font-bold text-white">
+                            Ogni volta che studiamo, facciamo uno sport o impariamo un'arte, stiamo costruendo la nostra libertà personale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-5 bg-pop-gray p-8 rounded-3xl border-2 border-pop-amber text-center space-y-4 shadow-[10px_10px_0px_0px_rgba(245,158,11,1)]">
+                <div class="text-xs font-mono uppercase text-gray-400 tracking-widest">// IMPAGNO SCUOLA</div>
+                <div class="text-2xl md:text-3xl font-black text-pop-amber uppercase font-sans">
+                    CULTURA È LIBERTÀ
+                </div>
+                <p class="text-sm text-gray-300 font-medium leading-relaxed">
+                    La scuola salesiana è il luogo in cui ogni talento viene valorizzato affinché nessuno rimanga indietro nel proprio percorso di crescita.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-mono text-gray-400">
+            <a href="#slide-2" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-4" class="text-pop-amber font-black uppercase hover:underline">Sintesi Finale &rarr;</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: PAROLA GUIDA (BG PURPLE) -->
+    <section id="slide-4" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider">Parola di Vita</span>
+            <span class="text-xs md:text-sm font-mono text-white/60">Slide 4 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-block bg-black text-pop-amber font-mono text-xs uppercase px-3 py-1 font-bold">
+                DIRITTO ALL'EDUCAZIONE
+            </div>
+
+            <blockquote class="bg-black/40 p-8 md:p-12 rounded-3xl border-2 border-pop-amber shadow-[8px_8px_0px_0px_rgba(245,158,11,1)]">
+                <p class="text-3xl md:text-6xl font-black uppercase tracking-tight leading-tight text-white">
+                    «L'educazione è l'arma più potente che si possa usare per cambiare il mondo.»
+                </p>
+            </blockquote>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-bold uppercase">
+            <a href="#slide-3" class="hover:underline">&larr; Indietro</a>
+            <span class="bg-black text-pop-amber px-4 py-2 font-black">Buona giornata e buon inizio settimana! ✨</span>
+        </div>
+    </section>
+
+</body>
+</html>

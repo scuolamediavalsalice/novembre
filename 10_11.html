@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buongiorno 10 novembre</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pop: {
+                            purple: '#7C3AED',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            gray: '#1E293B',
+                            light: '#F8FAFC',
+                            red: '#DC2626'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Impact', 'Arial Black', 'sans-serif'],
+                        body: ['ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            snap-type: y mandatory;
+        }
+        section {
+            snap-align: start;
+            snap-stop: always;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1.5px #F59E0B;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-pop-dark text-white font-body antialiased overflow-x-hidden">
+
+    <!-- SLIDE 1: ATTIVITÀ DI GRUPPO FLASH (SENZA CITAZIONE) -->
+    <section id="slide-1" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark relative border-b-8 border-pop-purple">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm uppercase font-black tracking-widest text-pop-amber bg-white/10 px-3 py-1 rounded-full">
+                MARTEDÌ 10 NOVEMBRE            </span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">01 / 04</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="my-auto max-w-5xl mx-auto space-y-6 text-left w-full">
+            <div class="inline-block bg-pop-purple text-white text-xs md:text-sm font-black uppercase px-3 py-1 -rotate-1">
+                👥 Pensiero collettivo
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none">
+                MAGAZZINI <br><span class="text-pop-amber text-stroke">SEMPRE PIÙ GRANDI</span>
+            </h1>
+
+            <!-- Box Istruzioni Lavoro di Gruppo -->
+            <div class="bg-pop-gray p-6 md:p-8 rounded-2xl border-4 border-pop-purple shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="bg-pop-amber text-pop-dark font-mono font-black text-xs px-2.5 py-1 rounded uppercase">⚡ LA SFIDA FLASH</span>
+                    <h3 class="text-2xl md:text-3xl font-black text-white uppercase leading-tight">
+                        La "Lista delle Cose Inutili"
+                    </h3>
+                </div>
+                
+                <p class="text-base md:text-xl font-medium text-gray-200 leading-relaxed">
+                    Insieme ai compagni di banco, elencate <strong>3 cose, oggetti o status</strong> che spesso accumuliamo convinti che ci diano sicurezza, ma che in realtà non ci rendono davvero felici né ci salvano nei momenti veri.
+                </p>
+                
+                <span class="block text-xs font-mono text-pop-amber font-bold uppercase">✍️ Annotate i 3 punti su un foglio!</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-mono text-gray-400">
+            <span>Prima di condividere le liste...</span>
+            <a href="#slide-2" class="text-pop-amber font-black hover:underline flex items-center gap-1 uppercase">
+                LEGGI IL TESTO DEL VANGELO &darr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: TESTO DELLA PARABOLA (BG PURPLE) -->
+    <section id="slide-2" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider">Lettura del Vangelo</span>
+            <span class="text-xs md:text-sm font-mono text-white/60">Slide 2 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto space-y-6 w-full">
+            <div class="text-center space-y-1">
+                <span class="bg-black text-pop-amber font-mono font-black text-xs px-3 py-1 uppercase">DAL VANGELO SECONDO LUCA (12, 16-21)</span>
+            </div>
+            
+            <div class="bg-black/50 p-6 md:p-8 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] space-y-4">
+                <p class="text-sm md:text-lg font-medium leading-relaxed text-gray-100">
+                    «La campagna di un uomo ricco aveva dato un raccolto abbondante. Egli ragionava tra sé: “Che farò, poiché non ho dove mettere i miei raccolti? Farò così: demolirò i miei magazzini e ne costruirò altri più grandi e vi raccoglierò tutto il grano e i miei beni. Poi dirò a me stesso: Anima mia, hai a disposizione molti beni per molti anni; riposati, mangia, bevi e divertiti!”».
+                </p>
+                <div class="p-4 bg-pop-dark rounded-2xl border-l-4 border-pop-amber space-y-1">
+                    <p class="text-sm md:text-base font-black text-pop-amber">
+                        «Ma Dio gli disse: “Stolto! Questa notte stessa ti sarà richiesta la tua vita. E quello che hai preparato, di chi sarà?”. Così è di chi accumula tesori per sé e non si arricchisce presso Dio».
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-bold uppercase">
+            <a href="#slide-1" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-3" class="bg-black text-pop-amber px-4 py-2 font-black hover:bg-pop-dark hover:text-white transition">
+                RITROVA L'ESSENZIALE &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: ATTUALIZZAZIONE & SPUNTO DI VITA (BG AMBER) -->
+    <section id="slide-3" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-amber text-pop-dark">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-black/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-dark">Riflessione Guidata</span>
+            <span class="text-xs md:text-sm font-mono text-black/60">Slide 3 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto w-full grid md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 space-y-6">
+                <span class="bg-black text-pop-amber px-3 py-1 text-xs font-black uppercase">Oltre le Finte Sicurezze</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight leading-none text-pop-dark">
+                    Cosa resta davvero?
+                </h2>
+
+                <div class="space-y-4 font-bold text-base md:text-lg">
+                    <div class="p-4 bg-black text-white rounded-xl border-l-4 border-pop-purple">
+                        <p>
+                            La vita non dipende dai beni che accumuliamo. Gli oggetti e i "magazzini pieni" non possono comprare il tempo, la pace né gli affetti veri.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-black text-white rounded-xl border-l-4 border-pop-dark">
+                        <p>
+                            "Essere ricchi presso Dio" significa riempire la vita di relazioni, generosità e gesti di cura verso gli altri.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-5 bg-black text-white p-8 rounded-3xl border-4 border-pop-purple shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] text-center space-y-3">
+                <span class="text-xs font-mono uppercase text-pop-amber font-black tracking-widest">// LA DOMANDA PER NOI</span>
+                <div class="text-2xl md:text-3xl font-black text-pop-amber uppercase font-sans">
+                    COSA STAI ACCUMULANDO?
+                </div>
+                <p class="text-sm font-medium text-gray-300 leading-relaxed">
+                    Cose materiali che passano o amicizia, bontà e condivisione che restano per sempre?
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-black/10 text-xs font-bold text-black">
+            <a href="#slide-2" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-4" class="bg-black text-pop-amber px-4 py-2 font-black uppercase hover:bg-pop-purple hover:text-white transition">
+                SINTESI FINALE &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: PAROLA GUIDA (BG DARK) -->
+    <section id="slide-4" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">Parola di Vita</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">Slide 4 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-block bg-pop-amber text-pop-dark font-mono text-xs uppercase px-3 py-1 font-bold">
+                LUCA 12, 15
+            </div>
+
+            <blockquote class="bg-pop-gray p-8 md:p-12 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)]">
+                <p class="text-3xl md:text-6xl font-black uppercase tracking-tight leading-tight text-white">
+                    «Anche se uno è nell'abbondanza, la sua vita non dipende dai suoi beni.»
+                </p>
+            </blockquote>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-bold uppercase">
+            <a href="#slide-3" class="hover:underline">&larr; Indietro</a>
+            <span class="bg-pop-amber text-pop-dark px-4 py-2 font-black">Buona giornata e buon lavoro insieme! ✨</span>
+        </div>
+    </section>
+
+</body>
+</html>

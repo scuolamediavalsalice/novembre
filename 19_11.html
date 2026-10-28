@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buongiorno 19 novembre</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pop: {
+                            purple: '#7C3AED',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            gray: '#1E293B',
+                            light: '#F8FAFC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Impact', 'Arial Black', 'sans-serif'],
+                        body: ['ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            snap-type: y mandatory;
+        }
+        section {
+            snap-align: start;
+            snap-stop: always;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1.5px #F59E0B;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-pop-dark text-white font-body antialiased overflow-x-hidden">
+
+    <!-- SLIDE 1: DOMANDA GUIDA (BG DARK) -->
+    <section id="slide-1" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark relative border-b-8 border-pop-purple">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm uppercase font-black tracking-widest text-pop-amber bg-white/10 px-3 py-1 rounded-full">
+                GIOVEDÌ 19 NOVEMBRE
+            </span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">01 / 04</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="my-auto max-w-5xl mx-auto space-y-8 text-center w-full">
+            <span class="bg-pop-purple text-white text-xs md:text-sm font-black uppercase px-4 py-1.5 rounded-full inline-block">
+                LA DOMANDA DI OGGI
+            </span>
+            
+            <h1 class="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">
+                DALL'ALTO O <br><span class="text-pop-amber text-stroke">ACCANTO?</span>
+            </h1>
+
+            <p class="text-lg md:text-2xl font-bold text-gray-300 max-w-2xl mx-auto">
+                Quando aiutiamo qualcuno, dove ci posizioniamo rispetto a lui?
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-end items-center pt-4 border-t border-white/10 text-xs font-mono">
+            <a href="#slide-2" class="text-pop-amber font-black hover:underline flex items-center gap-1 uppercase">
+                GUARDA LA SCENA &darr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: CONFRONTO TRA I DUE GESTI (BG PURPLE) -->
+    <section id="slide-2" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">Due Modi di Aiutare</span>
+            <span class="text-xs md:text-sm font-mono text-white/60">02 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-8">
+            <!-- Box Dall'Alto -->
+            <div class="bg-black/40 p-8 rounded-3xl border-2 border-white/20 space-y-4 text-center">
+                <span class="bg-white/20 text-white font-mono font-black text-xs px-3 py-1 rounded-full uppercase">01</span>
+                <h3 class="text-3xl font-black text-white uppercase">Dall'Alto</h3>
+                <p class="text-base text-gray-200">
+                    Dare qualcosa rimanendo a distanza. Risolve un bisogno immediato, ma mantiene le distanze.
+                </p>
+            </div>
+
+            <!-- Box Accanto -->
+            <div class="bg-black p-8 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] space-y-4 text-center">
+                <span class="bg-pop-amber text-pop-dark font-mono font-black text-xs px-3 py-1 rounded-full uppercase">02</span>
+                <h3 class="text-3xl font-black text-pop-amber uppercase">Accanto</h3>
+                <p class="text-base text-gray-200">
+                    Sedere allo stesso livello, guardarsi negli occhi e ascoltare. Trasforma l'aiuto in un incontro.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-bold uppercase">
+            <a href="#slide-1" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-3" class="bg-black text-pop-amber px-4 py-2 font-black hover:bg-pop-dark hover:text-white transition">
+                LA CHIAVE DI APARECIDA &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: IL MESSAGGIO DI APARECIDA (BG AMBER) -->
+    <section id="slide-3" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-amber text-pop-dark">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-black/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-dark">Riflessione</span>
+            <span class="text-xs md:text-sm font-mono text-black/60">03 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <span class="bg-black text-pop-amber px-4 py-1.5 text-xs font-black uppercase rounded-full">
+                DOCUMENTO DI APARECIDA
+            </span>
+
+            <blockquote class="bg-black text-white p-8 md:p-12 rounded-3xl border-4 border-pop-purple shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] space-y-4">
+                <p class="text-2xl md:text-4xl font-black uppercase leading-tight text-pop-amber">
+                    «Non si tratta solo di dare qualcosa, ma di diventare amici.»
+                </p>
+                <p class="text-sm md:text-base font-medium text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                    Per capire davvero il valore di un'altra persona occorre superare la logica dell'assistenza ed entrare in quella della relazione sincera.
+                </p>
+            </blockquote>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-black/10 text-xs font-bold text-black">
+            <a href="#slide-2" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-4" class="bg-black text-pop-amber px-4 py-2 font-black uppercase hover:bg-pop-purple hover:text-white transition">
+                LA SFIDA DI OGGI &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: IMPEGNO DEL GIORNO (BG DARK) -->
+    <section id="slide-4" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">Passo Concreto</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">04 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-block bg-pop-amber text-pop-dark font-mono text-xs uppercase px-3 py-1 font-bold rounded">
+                IMPEGNO
+            </div>
+
+            <div class="bg-pop-gray p-8 md:p-12 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] space-y-4">
+                <p class="text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight text-white">
+                    Fai un passo "accanto" a qualcuno con cui parli raramente.
+                </p>
+                <p class="text-sm font-mono text-pop-amber uppercase pt-4 border-t border-white/10">
+                    L'ascolto vero inizia dai piccoli gesti di ogni giorno.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-bold uppercase">
+            <a href="#slide-3" class="hover:underline">&larr; Indietro</a>
+            <span class="bg-pop-amber text-pop-dark px-4 py-2 font-black">Buona giornata! ✨</span>
+        </div>
+    </section>
+
+</body>
+</html>

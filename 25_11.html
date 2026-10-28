@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buongiorno 25 novembre</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tone.js per effetti audio sintetizzati -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <!-- Canvas Confetti per festeggiare il completamento della casa -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pop: {
+                            purple: '#7C3AED',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            gray: '#1E293B',
+                            light: '#F8FAFC',
+                            red: '#DC2626'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Impact', 'Arial Black', 'sans-serif'],
+                        body: ['ui-sans-serif', 'system-ui', 'sans-serif']
+                    },
+                    keyframes: {
+                        brickBounce: {
+                            '0%': { transform: 'translateY(-120px) scale(0.8)', opacity: '0' },
+                            '60%': { transform: 'translateY(10px) scale(1.05)', opacity: '1' },
+                            '80%': { transform: 'translateY(-5px) scale(0.98)' },
+                            '100%': { transform: 'translateY(0) scale(1)' }
+                        },
+                        popIn: {
+                            '0%': { transform: 'scale(0.5)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        flagWave: {
+                            '0%, 100%': { transform: 'rotate(-3deg) translateY(0)' },
+                            '50%': { transform: 'rotate(3deg) translateY(-6px)' }
+                        }
+                    },
+                    animation: {
+                        brickBounce: 'brickBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                        popIn: 'popIn 0.3s ease-out forwards',
+                        flagWave: 'flagWave 2s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            snap-type: y mandatory;
+        }
+        section {
+            snap-align: start;
+            snap-stop: always;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1.5px #0F172A;
+            color: transparent;
+        }
+        .text-stroke-amber {
+            -webkit-text-stroke: 1.5px #F59E0B;
+            color: transparent;
+        }
+        /* Custom scrollbar per la griglia di mattoni */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1E293B;
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #F59E0B;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-pop-amber text-pop-dark font-body antialiased overflow-x-hidden selection:bg-pop-purple selection:text-white">
+
+    <!-- SLIDE 1: MURA INTERATTIVA DI VALDOCCO (WOW EFFECT) -->
+    <section id="slide-1" class="min-h-screen w-full flex flex-col justify-between p-4 md:p-8 bg-pop-amber relative border-b-8 border-pop-purple">
+        <!-- Header -->
+        <div class="flex flex-wrap justify-between items-center border-b-4 border-pop-dark pb-3 gap-2">
+            <div class="flex items-center gap-2">
+                <span class="text-xs md:text-sm font-black uppercase tracking-widest text-white bg-pop-dark px-3 py-1 rounded-full shadow-[3px_3px_0px_0px_rgba(124,58,237,1)]">
+                    MARTEDÌ 25 NOVEMBRE
+                </span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-xs md:text-sm font-mono font-black text-pop-dark bg-white px-3 py-1 rounded-full border-2 border-pop-dark">
+                    Mattoni Posati: <span id="brickCount" class="text-pop-purple font-sans text-base md:text-lg">0</span>
+                </span>
+                <span class="text-xs md:text-sm font-mono text-pop-dark/80 font-bold">01 / 04</span>
+            </div>
+        </div>
+
+        <!-- Main Content Builder Area -->
+        <div class="my-auto max-w-6xl mx-auto w-full space-y-4 py-2">
+            <!-- Title -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-3">
+                <div>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none text-pop-dark mt-1">
+                        IL MATTONE DI <span class="text-white text-stroke">VALDOCCO</span>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Cantiere / Wall Container -->
+            <div id="cantiereContainer" class="bg-pop-dark rounded-3xl border-4 border-pop-dark p-4 md:p-6 shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] relative min-h-[340px] md:min-h-[400px] flex flex-col justify-end overflow-hidden transition-all">
+                
+                <!-- Bandiera / Tetto Valdocco (Ammesso dopo 5+ mattoni) -->
+                <div id="valdoccoFlag" class="hidden absolute top-4 left-1/2 -translate-x-1/2 z-20 animate-flagWave">
+                    <div class="bg-pop-red text-white border-4 border-white px-6 py-2 rounded-2xl font-body font-black text-lg md:text-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-center flex items-center gap-2">
+                        <span>🚩</span>
+                        <span>CASA VALDOCCO SALESIANI</span>
+                        <span>✨</span>
+                    </div>
+                </div>
+
+                <!-- Empty State Message -->
+                <div id="emptyWallMessage" class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 space-y-3 pointer-events-none">
+                    <div class="w-16 h-16 bg-pop-amber text-pop-dark rounded-2xl flex items-center justify-center font-black text-3xl border-2 border-white animate-bounce">
+                        🧱
+                    </div>
+                    <p class="text-gray-200 font-body font-bold text-base md:text-xl max-w-md tracking-tight">
+                        La parete è vuota! Clicca sul pulsante qui sotto e posa il primo "mattone caldo" della nostra classe.
+                    </p>
+                </div>
+
+                <!-- The Interactive Brick Wall Grid -->
+                <div id="brickWall" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 relative z-10 max-h-[300px] md:max-h-[360px] overflow-y-auto p-2 custom-scrollbar">
+                    <!-- Dynamic bricks will be injected here -->
+                </div>
+            </div>
+
+            <!-- Action Buttons Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                <button id="openModalBtn" onclick="openBrickModal()" class="flex-1 min-w-[240px] bg-pop-purple hover:bg-purple-600 text-white font-body font-bold text-lg md:text-2xl py-3.5 px-6 rounded-2xl border-4 border-pop-dark shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_0px_rgba(15,23,42,1)] active:translate-x-1 active:translate-y-1 transition-all flex items-center justify-center gap-3">
+                    <span class="text-2xl">➕</span>
+                    <span>Aggiungi un mattone ora</span>
+                </button>
+
+                <button onclick="resetWall()" class="bg-pop-dark text-gray-300 hover:text-white font-body text-xs md:text-sm font-bold py-3.5 px-4 rounded-2xl border-2 border-pop-dark hover:bg-pop-gray transition flex items-center gap-1.5">
+                    <span>🔄</span>
+                    <span>Ricomincia Wall</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-3 border-t-2 border-pop-dark text-xs md:text-sm font-body font-bold text-pop-dark">
+            <span id="statusFooter">Posa almeno 5 mattoni per issare la bandiera di Valdocco!</span>
+            <a href="#slide-2" class="bg-pop-dark text-pop-amber px-4 py-2 font-black rounded-xl hover:bg-pop-purple hover:text-white transition uppercase border-2 border-pop-dark">
+                LE RADICI STORICHE &darr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: MAMMA MARGHERITA E LE RADICI DI VALDOCCO (BG DARK) -->
+    <section id="slide-2" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white border-b-8 border-pop-amber">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">02 / ORIGINI SALESIANE</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">02 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto space-y-8 w-full">
+            <div class="text-center space-y-2">
+                <span class="bg-pop-amber text-pop-dark font-mono font-black text-xs px-3 py-1 uppercase rounded-full">
+                    MAMMA MARGHERITA & DON BOSCO
+                </span>
+                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tight text-white">
+                    COME NASCE UNA <span class="text-pop-amber text-stroke-amber">CASA</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Box La Storia -->
+                <div class="bg-pop-gray p-6 md:p-8 rounded-3xl border-2 border-white/20 space-y-4">
+                    <span class="bg-pop-purple text-white font-mono font-black text-xs px-3 py-1 rounded-full uppercase">NON DAI SOLDI, MA DALLA CURA</span>
+                    <h3 class="text-2xl font-black text-pop-amber uppercase">
+                        La Prima Casa di Valdocco
+                    </h3>
+                    <p class="text-sm md:text-base font-medium text-gray-200 leading-relaxed">
+                        Valdocco non è nata da grandi finanziamenti o da freddi progetti a tavolino. È nata mattonella su mattonella, notte dopo notte: Mamma Margherita che cucinava la polenta e rammendava i vestiti, e Don Bosco che offriva un tetto sicuro a ragazzi soli senza famiglia.
+                    </p>
+                </div>
+
+                <!-- Box L'Attualizzazione per Noi -->
+                <div class="bg-pop-gray p-6 md:p-8 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] space-y-4">
+                    <span class="bg-pop-amber text-pop-dark font-mono font-black text-xs px-3 py-1 rounded-full uppercase">LA NOSTRA SCUOLA OGGI</span>
+                    <h3 class="text-2xl font-black text-white uppercase">
+                        I Muri Non Bastano
+                    </h3>
+                    <p class="text-sm md:text-base font-medium text-gray-200 leading-relaxed">
+                        Questa scuola non è fatta soltanto di cemento e mattoni freddi. Ogni volta che accogliamo chi si sente solo o in difficoltà, stiamo aggiungendo un "mattone caldo" per trasformare un semplice edificio in un luogo dove sentirsi al sicuro.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-mono text-gray-400">
+            <a href="#slide-1" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-3" class="text-pop-amber font-black uppercase hover:underline">
+                SPUNTO DI RIFLESSIONE &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: LA NOSTRA SCUOLA OGGI (BG PURPLE) -->
+    <section id="slide-3" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple text-white border-b-8 border-pop-dark">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-mono font-bold uppercase tracking-wider text-pop-amber">03 / SINTESI PEDAGOGICA</span>
+            <span class="text-xs md:text-sm font-mono text-white/60">03 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto w-full grid md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 space-y-6">
+                <span class="bg-black text-pop-amber px-3 py-1 text-xs font-black uppercase rounded-md">LO SPIRITO DI VALDOCCO</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight">Ciascuno è Fondamentale</h2>
+
+                <div class="space-y-4 font-medium text-base">
+                    <div class="p-4 bg-black/40 border-l-4 border-pop-amber rounded-r-xl">
+                        <p class="text-sm md:text-lg font-bold text-white leading-relaxed">
+                            Una casa crolla se manca anche solo un mattone alla base. Allo stesso modo, la nostra classe o scuola non è completa se qualcuno rimane escluso o invisibile.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-black/40 border-l-4 border-white rounded-r-xl">
+                        <p class="text-sm md:text-lg font-bold text-white leading-relaxed">
+                            Mamma Margherita e Don Bosco ci insegnano che l'accoglienza non è una parola astratta: è un clima quotidiano fatto di risposte concrete, attenzioni reciproche e calore umano.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-5 bg-black text-white p-8 rounded-3xl border-4 border-pop-amber text-center space-y-4 shadow-[10px_10px_0px_0px_rgba(245,158,11,1)]">
+                <div class="text-xs font-mono uppercase text-pop-amber tracking-widest">// STILE SALESIANO</div>
+                <div class="text-2xl md:text-3xl font-black text-white uppercase font-sans leading-tight">
+                    CASA CHE ACCOGLIE
+                </div>
+                <p class="text-sm text-gray-300 font-medium leading-relaxed italic">
+                    «Qui con voi mi trovo bene; è proprio la mia vita stare con voi.»
+                </p>
+                <div class="pt-2 border-t border-white/20 text-xs text-pop-amber font-mono font-bold">
+                    — San Giovanni Bosco
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-mono text-white/70">
+            <a href="#slide-2" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-4" class="text-pop-amber font-black uppercase hover:underline">LA SFIDA PER OGGI &rarr;</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: LA SFIDA DEL GIORNO (BG DARK) -->
+    <section id="slide-4" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">04 / AZIONE CONCRETA</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">04 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-block bg-pop-amber text-pop-dark font-mono text-xs uppercase px-3 py-1 font-bold rounded-full">
+                LA SFIDA DEL GIORNO
+            </div>
+
+            <blockquote class="bg-pop-gray p-8 md:p-12 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] space-y-6">
+                <p class="text-2xl md:text-4xl font-black uppercase tracking-tight leading-tight text-white">
+                    Oggi sii tu un "mattone" di questa casa
+                </p>
+                <p class="text-xs md:text-sm font-mono text-pop-amber uppercase pt-4 border-t border-white/10">
+                    Costruiamo insieme la nostra Valdocco quotidiana.
+                </p>
+            </blockquote>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-bold uppercase">
+            <a href="#slide-3" class="hover:underline text-gray-400">&larr; Indietro</a>
+            <span class="bg-pop-amber text-pop-dark px-4 py-2 font-black rounded-xl">Buona giornata e buona costruzione! ✨</span>
+        </div>
+    </section>
+
+    <!-- MODAL POPUP FOR ADDING A BRICK -->
+    <div id="brickModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-pop-dark text-white rounded-3xl border-4 border-pop-amber p-6 md:p-8 max-w-lg w-full space-y-6 shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] animate-popIn">
+            
+            <div class="flex justify-between items-center border-b border-white/20 pb-3">
+                <h3 class="text-2xl font-bold font-body text-pop-amber flex items-center gap-2">
+                    <span>🧱</span> Aggiungi il tuo mattone
+                </h3>
+                <button onclick="closeBrickModal()" class="text-gray-400 hover:text-white font-mono text-xl">✕</button>
+            </div>
+
+            <!-- Quick Preset Tags -->
+            <div class="space-y-2">
+                <label class="text-sm font-body font-bold text-gray-200 block">
+                    1. Scegli un'azione rapida:
+                </label>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="selectPreset('Accoglienza')" class="preset-btn bg-pop-gray hover:bg-pop-purple border border-white/30 text-sm font-body font-bold px-3.5 py-2 rounded-xl transition">
+                        🤝 Accoglienza
+                    </button>
+                    <button onclick="selectPreset('Ascolto Vero')" class="preset-btn bg-pop-gray hover:bg-pop-purple border border-white/30 text-sm font-body font-bold px-3.5 py-2 rounded-xl transition">
+                        👂 Ascolto Vero
+                    </button>
+                    <button onclick="selectPreset('Zero Bullismo')" class="preset-btn bg-pop-gray hover:bg-pop-purple border border-white/30 text-sm font-body font-bold px-3.5 py-2 rounded-xl transition">
+                        🛑 Zero Bullismo
+                    </button>
+                    <button onclick="selectPreset('Sorriso')" class="preset-btn bg-pop-gray hover:bg-pop-purple border border-white/30 text-sm font-body font-bold px-3.5 py-2 rounded-xl transition">
+                        😊 Sorriso
+                    </button>
+                    <button onclick="selectPreset('Inclusione')" class="preset-btn bg-pop-gray hover:bg-pop-purple border border-white/30 text-sm font-body font-bold px-3.5 py-2 rounded-xl transition">
+                        🤗 Inclusione
+                    </button>
+                    <button onclick="selectPreset('Rispetto')" class="preset-btn bg-pop-gray hover:bg-pop-purple border border-white/30 text-sm font-body font-bold px-3.5 py-2 rounded-xl transition">
+                        ✨ Rispetto
+                    </button>
+                </div>
+            </div>
+
+            <!-- Custom Word Input -->
+            <div class="space-y-2">
+                <label for="customWordInput" class="text-sm font-body font-bold text-gray-200 block">
+                    2. Oppure scrivi un'azione personalizzata:
+                </label>
+                <input 
+                    type="text" 
+                    id="customWordInput" 
+                    placeholder="es. Salutare i nuovi compagni..." 
+                    maxlength="30"
+                    class="w-full bg-pop-gray text-white border-2 border-pop-amber rounded-xl px-4 py-3 font-body font-bold text-base focus:outline-none focus:ring-2 focus:ring-pop-purple"
+                />
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="flex gap-3 pt-2">
+                <button onclick="closeBrickModal()" class="w-1/3 bg-pop-gray text-white font-body font-bold text-sm py-3 rounded-xl hover:bg-gray-700 transition">
+                    Annulla
+                </button>
+                <button onclick="confirmAddBrick()" class="w-2/3 bg-pop-amber text-pop-dark font-body font-bold text-lg py-3 rounded-xl hover:bg-yellow-400 transition shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
+                    Posa il mattone 🧱
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // App State
+        let bricks = [];
+        const synth = new Tone.Synth().toDestination();
+
+        // Preset Colors for Pop Bricks
+        const brickColors = [
+            { bg: 'bg-pop-amber', text: 'text-pop-dark', border: 'border-pop-dark' },
+            { bg: 'bg-pop-purple', text: 'text-white', border: 'border-white' },
+            { bg: 'bg-pop-red', text: 'text-white', border: 'border-white' },
+            { bg: 'bg-emerald-500', text: 'text-pop-dark', border: 'border-pop-dark' },
+            { bg: 'bg-blue-600', text: 'text-white', border: 'border-white' }
+        ];
+
+        // Sound generator helper
+        function playBrickSound(pitch = "C4") {
+            try {
+                if (Tone.context.state !== 'running') {
+                    Tone.start();
+                }
+                synth.triggerAttackRelease(pitch, "8n");
+            } catch (e) {
+                // Audio context fallback
+            }
+        }
+
+        // Modal Controls
+        function openBrickModal() {
+            document.getElementById('brickModal').classList.remove('hidden');
+            document.getElementById('customWordInput').focus();
+        }
+
+        function closeBrickModal() {
+            document.getElementById('brickModal').classList.add('hidden');
+            document.getElementById('customWordInput').value = '';
+        }
+
+        function selectPreset(word) {
+            document.getElementById('customWordInput').value = word;
+        }
+
+        // Confirm & Add Brick
+        function confirmAddBrick() {
+            const input = document.getElementById('customWordInput');
+            const word = input.value.trim();
+
+            if (!word) {
+                return;
+            }
+
+            // Create new brick object
+            const colorScheme = brickColors[bricks.length % brickColors.length];
+            const newBrick = {
+                id: Date.now(),
+                text: word,
+                color: colorScheme
+            };
+
+            bricks.push(newBrick);
+            closeBrickModal();
+            renderWall();
+
+            // Play sound pitch based on height
+            const notes = ["C4", "E4", "G4", "B4", "C5", "E5"];
+            const note = notes[Math.min(bricks.length - 1, notes.length - 1)];
+            playBrickSound(note);
+
+            // Check milestone (5+ Bricks for Flag & Celebration)
+            if (bricks.length === 5) {
+                triggerValdoccoCelebration();
+            } else if (bricks.length > 5) {
+                // Small confetti burst for each additional brick
+                confetti({
+                    particleCount: 25,
+                    spread: 60,
+                    origin: { y: 0.7 }
+                });
+            }
+        }
+
+        // Render Bricks into DOM
+        function renderWall() {
+            const wall = document.getElementById('brickWall');
+            const countEl = document.getElementById('brickCount');
+            const emptyMsg = document.getElementById('emptyWallMessage');
+            const statusFooter = document.getElementById('statusFooter');
+
+            countEl.innerText = bricks.length;
+
+            if (bricks.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                wall.innerHTML = '';
+                document.getElementById('valdoccoFlag').classList.add('hidden');
+                statusFooter.innerText = "Posa almeno 5 mattoni per issare la bandiera di Valdocco!";
+                return;
+            }
+
+            emptyMsg.classList.add('hidden');
+            wall.innerHTML = '';
+
+            bricks.forEach((b, index) => {
+                const brickEl = document.createElement('div');
+                brickEl.className = `${b.color.bg} ${b.color.text} p-3 rounded-2xl border-4 ${b.color.border} shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between items-center text-center font-body font-bold animate-brickBounce relative group min-h-[75px]`;
+                
+                brickEl.innerHTML = `
+                    <div class="flex items-center justify-between w-full text-[11px] font-mono opacity-80 border-b border-black/10 pb-1">
+                        <span>#${index + 1}</span>
+                        <span>VALDOCCO</span>
+                    </div>
+                    <span class="text-sm md:text-base font-body font-bold leading-snug py-1 my-auto break-words max-w-full">
+                        ${escapeHtml(b.text)}
+                    </span>
+                `;
+
+                wall.appendChild(brickEl);
+            });
+
+            // Scroll wall to bottom
+            wall.scrollTop = wall.scrollHeight;
+        }
+
+        // Valdocco Flag & Firework Celebration
+        function triggerValdoccoCelebration() {
+            const flag = document.getElementById('valdoccoFlag');
+            flag.classList.remove('hidden');
+
+            document.getElementById('statusFooter').innerText = "🎉 COMPLIMENTI! Avete costruito la Casa di Valdocco!";
+
+            // Play triumph chord
+            try {
+                if (Tone.context.state !== 'running') Tone.start();
+                const polySynth = new Tone.PolySynth().toDestination();
+                polySynth.triggerAttackRelease(["C4", "E4", "G4", "C5"], "2n");
+            } catch (e) {}
+
+            // Big Confetti Celebration
+            const duration = 2.5 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#F59E0B', '#7C3AED', '#DC2626']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#F59E0B', '#7C3AED', '#DC2626']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+
+        // Reset Wall Function
+        function resetWall() {
+            if (bricks.length > 0) {
+                bricks = [];
+                renderWall();
+            }
+        }
+
+        // Utility: Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.innerText = text;
+            return div.innerHTML;
+        }
+
+        // Keyboard support inside modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !document.getElementById('brickModal').classList.contains('hidden')) {
+                confirmAddBrick();
+            }
+        });
+    </script>
+</body>
+</html>

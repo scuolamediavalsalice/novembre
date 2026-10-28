@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buongiorno 27 novembre</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pop: {
+                            purple: '#7C3AED',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            gray: '#1E293B',
+                            red: '#DC2626',
+                            cyan: '#06B6D4',
+                            green: '#10B981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Impact', 'Arial Black', 'sans-serif'],
+                        body: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            snap-type: y mandatory;
+        }
+        section {
+            snap-align: start;
+            snap-stop: always;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1.5px #F59E0B;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-pop-dark text-white font-body antialiased overflow-x-hidden">
+
+    <!-- SLIDE 1: SIMULATORE INTERATTIVO STIPENDIO (BG DARK) -->
+    <section id="slide-1" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark relative border-b-8 border-pop-amber">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm uppercase font-black tracking-widest text-pop-amber bg-white/10 px-3 py-1 rounded-full">
+                VENERDÌ 27 NOVEMBRE
+            </span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">01 / 04</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="my-auto max-w-5xl mx-auto space-y-6 w-full text-center">
+            
+            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none">
+                ANCHE CHI LAVORA <br><span class="text-pop-amber text-stroke">PUÒ ESSERE POVERO</span>
+            </h1>
+
+            <p class="text-base md:text-xl font-bold text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                Spesso pensiamo che la povertà riguardi solo chi non ha un impiego. Ma oggi in Italia 1 lavoratore su 9 lavora ogni giorno ed è comunque povero. Mettetevi nei suoi panni: avete uno stipendio di <strong>€ 850 al mese</strong>, provate a pagare le spese!
+            </p>
+
+            <!-- Container Simulatore -->
+            <div class="bg-pop-gray p-6 md:p-8 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] text-left space-y-6">
+                
+                <!-- Display Bilancio -->
+                <div class="bg-black p-4 md:p-6 rounded-2xl border-2 border-white/20 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Stipendio da Lavoratore a Tempo Pieno</span>
+                        <span class="text-2xl font-black text-white">€ 850.00 / mese</span>
+                    </div>
+
+                    <div class="text-center md:text-right">
+                        <span class="text-xs font-bold text-pop-amber uppercase tracking-wider block">Saldo Rimanente nel Portafoglio</span>
+                        <span id="budget-display" class="text-4xl font-black text-pop-green font-mono">€ 850.00</span>
+                    </div>
+                </div>
+
+                <!-- Bottoni Spese -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <button id="btn-affitto" onclick="payExpense('affitto', 480, 'Affitto Stanza / Monolocale')" class="bg-black/60 hover:bg-pop-amber hover:text-pop-dark p-3.5 rounded-2xl border border-white/20 font-bold text-xs md:text-sm transition flex flex-col items-center justify-center gap-1 text-center">
+                        <span class="text-xl">🏠</span>
+                        <span>Affitto</span>
+                        <span class="text-pop-amber font-mono text-xs font-black">- € 480</span>
+                    </button>
+
+                    <button id="btn-bollette" onclick="payExpense('bollette', 150, 'Bollette Luce & Gas')" class="bg-black/60 hover:bg-pop-amber hover:text-pop-dark p-3.5 rounded-2xl border border-white/20 font-bold text-xs md:text-sm transition flex flex-col items-center justify-center gap-1 text-center">
+                        <span class="text-xl">⚡</span>
+                        <span>Luce, acqua e gas</span>
+                        <span class="text-pop-amber font-mono text-xs font-black">- € 150</span>
+                    </button>
+
+                    <button id="btn-spesa" onclick="payExpense('spesa', 180, 'Spesa Alimentare essenziale')" class="bg-black/60 hover:bg-pop-amber hover:text-pop-dark p-3.5 rounded-2xl border border-white/20 font-bold text-xs md:text-sm transition flex flex-col items-center justify-center gap-1 text-center">
+                        <span class="text-xl">🛒</span>
+                        <span>Spesa di base</span>
+                        <span class="text-pop-amber font-mono text-xs font-black">- € 180</span>
+                    </button>
+
+                    <button id="btn-trasporti" onclick="payExpense('trasporti', 50, 'Abbonamento Mezzi / Benzina')" class="bg-black/60 hover:bg-pop-amber hover:text-pop-dark p-3.5 rounded-2xl border border-white/20 font-bold text-xs md:text-sm transition flex flex-col items-center justify-center gap-1 text-center">
+                        <span class="text-xl">🚌</span>
+                        <span>Abbonamento trasporti</span>
+                        <span class="text-pop-amber font-mono text-xs font-black">- € 50</span>
+                    </button>
+                </div>
+
+                <!-- Tasto Imprevisto / Uscita Sociale -->
+                <div class="pt-2 border-t border-white/10 flex flex-col sm:flex-row gap-3">
+                    <button onclick="payExpense('emergenza', 200, 'Dentista / Visita medica')" class="flex-1 bg-pop-red text-white p-3.5 rounded-2xl font-bold text-xs md:text-sm hover:bg-red-700 transition flex items-center justify-center gap-2">
+                        <span>🦷 Imprevisto di salute (- € 200)</span>
+                    </button>
+                    <button onclick="payExpense('pizza', 35, 'Pizza con gli Amici')" class="flex-1 bg-pop-purple text-white p-3.5 rounded-2xl font-bold text-xs md:text-sm hover:bg-purple-700 transition flex items-center justify-center gap-2">
+                        <span>🍕 Qualche uscita con gli amici (- € 35)</span>
+                    </button>
+                </div>
+
+                <!-- Alert Box Risultato -->
+                <div id="status-message" class="hidden p-4 rounded-2xl font-bold text-sm text-center"></div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-bold uppercase">
+            <span class="text-gray-400">Lavorare non basta più per essere al sicuro</span>
+            <a href="#slide-2" class="bg-pop-amber text-pop-dark px-4 py-2 font-black hover:bg-white transition">
+                SCOPRI PERCHÉ SUCCEDE &darr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: PERCHÉ ANCHE CHI LAVORA È POVERO (BG PURPLE) -->
+    <section id="slide-2" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">Analisi del Fenomeno</span>
+            <span class="text-xs md:text-sm font-mono text-white/60">02 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-8 items-center">
+            
+            <!-- Card 1: Cadere nel Pregiudizio -->
+            <div class="bg-black/40 p-8 rounded-3xl border-2 border-white/20 space-y-4">
+                <span class="bg-pop-red text-white font-mono font-black text-xs px-3 py-1 rounded-full uppercase">LO STEREOTIPO DA SUPERARE</span>
+<h3 class="text-2xl md:text-4xl font-black text-white uppercase font-body tracking-wide">"Basta rimboccarsi le maniche"</h3>                <p class="text-base text-gray-200 font-medium leading-relaxed">
+                    Siamo abituati a pensare: "Se ti impegni e lavori, non avrai problemi". La realtà di oggi smentisce questa frase: ci sono milioni di lavoratori con contratti regolari che non arrivano alla fine del mese.
+                </p>
+            </div>
+
+            <!-- Card 2: Le Cause del Lavoro Povero -->
+            <div class="bg-black p-8 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] space-y-4">
+                <span class="bg-pop-amber text-pop-dark font-mono font-black text-xs px-3 py-1 rounded-full uppercase">COS'È IL WORKING POOR</span>
+<h3 class="text-2xl md:text-4xl font-black text-pop-amber uppercase font-body tracking-wide">Contratti Pirata e Paghe Basse</h3>                <p class="text-base text-gray-200 font-medium leading-relaxed">
+                    Turni a chiamata, contratti part-time imposti, paghe a 5 euro all'ora o tirocini infiniti. Si lavora sodo ogni singolo giorno, ma il compenso non copre nemmeno il costo della vita essenziale.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-bold uppercase">
+            <a href="#slide-1" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-3" class="bg-black text-pop-amber px-4 py-2 font-black hover:bg-pop-dark hover:text-white transition">
+                DON BOSCO E IL GIUSTO SALARIO &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: LA DIGNITÀ DEL LAVORO IN DON BOSCO (BG AMBER) -->
+    <section id="slide-3" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-amber text-pop-dark">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-black/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-dark">Radici Salesiane</span>
+            <span class="text-xs md:text-sm font-mono text-black/60">03 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <span class="bg-black text-pop-amber px-4 py-1.5 text-xs font-black uppercase rounded-full">
+                LA DIGNITÀ PRIMA DI TUTTO
+            </span>
+
+            <blockquote class="bg-black text-white p-8 md:p-12 rounded-3xl border-4 border-pop-purple shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] space-y-4">
+                <p class="text-2xl md:text-4xl font-black uppercase leading-tight text-pop-amber">
+                    Il lavoro deve dare pane e dignità, non essere una trappola che soffoca chi lo compie.
+                </p>
+                <p class="text-sm md:text-base font-medium text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                    Don Bosco pretendeva che i datori di lavoro torinesi firmassero contratti scritti per i suoi ragazzi: non bastava che lavorassero, pretendeva paghe giuste, rispetto e salute.
+                </p>
+            </blockquote>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-black/10 text-xs font-bold text-black">
+            <a href="#slide-2" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-4" class="bg-black text-pop-amber px-4 py-2 font-black uppercase hover:bg-pop-purple hover:text-white transition">
+                IMPEGNO DI OGGI &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: IMPEGNO E GIUSTIZIA (BG DARK) -->
+    <section id="slide-4" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-amber">Azione e Consapevolezza</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">04 / 04</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-block bg-pop-amber text-pop-dark font-mono text-xs uppercase px-3 py-1 font-bold rounded">
+                IN AZIONE
+            </div>
+
+            <div class="bg-pop-gray p-8 md:p-12 rounded-3xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] space-y-4">
+                <p class="text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight text-white">
+                    Guarda con rispetto chi lavora attorno a te.
+                </p>
+                <p class="text-sm md:text-base font-bold text-pop-amber uppercase pt-4 border-t border-white/10">
+                    Riconosci la fatica dei lavoratori che incontri.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-bold uppercase">
+            <a href="#slide-3" class="hover:underline">&larr; Indietro</a>
+            <span class="bg-pop-amber text-pop-dark px-4 py-2 font-black">Buon fine settimana e rispetto per tutti! ✨</span>
+        </div>
+    </section>
+
+    <!-- Interactive Logic Script -->
+    <script>
+        let currentBudget = 850.0;
+        const paidItems = new Set();
+
+        function payExpense(id, amount, label) {
+            const display = document.getElementById('budget-display');
+            const statusMsg = document.getElementById('status-message');
+            const btn = document.getElementById('btn-' + id);
+
+            if (paidItems.has(id)) return;
+
+            if (currentBudget - amount < 0) {
+                statusMsg.className = "p-4 rounded-2xl font-bold text-sm text-center bg-pop-red text-white block animate-bounce";
+                statusMsg.innerHTML = `⚠️ <strong>FONDI INSUFFICIENTI!</strong> Lavori a tempo pieno, ma non puoi permetterti "${label}" (€ ${amount}). Questa è la trappola del Working Poor.`;
+                return;
+            }
+
+            currentBudget -= amount;
+            paidItems.add(id);
+
+            display.innerText = '€ ' + currentBudget.toFixed(2);
+
+            if (currentBudget <= 200) {
+                display.className = "text-4xl font-black text-pop-red font-mono";
+            } else if (currentBudget <= 400) {
+                display.className = "text-4xl font-black text-pop-amber font-mono";
+            }
+
+            if (btn) {
+                btn.classList.add('opacity-40', 'line-through');
+            }
+
+            statusMsg.className = "p-3 rounded-2xl font-bold text-xs text-center bg-pop-amber text-pop-dark block";
+            statusMsg.innerHTML = `✅ Pagato: <strong>${label}</strong> (- € ${amount})`;
+        }
+    </script>
+</body>
+</html>

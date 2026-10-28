@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buongiorno 5 novembre</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pop: {
+                            purple: '#7C3AED',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            gray: '#1E293B',
+                            light: '#F8FAFC',
+                            red: '#DC2626'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Impact', 'Arial Black', 'sans-serif'],
+                        body: ['ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            snap-type: y mandatory;
+        }
+        section {
+            snap-align: start;
+            snap-stop: always;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1.5px #F59E0B;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-pop-dark text-white font-body antialiased overflow-x-hidden">
+
+    <!-- SLIDE 1: ANEDDOTO E NARRAZIONE STIMOLO CON IMMAGINE -->
+    <section id="slide-1" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark relative border-b-8 border-pop-amber">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm uppercase font-black tracking-widest text-pop-amber bg-white/10 px-3 py-1 rounded-full">
+                GIOVEDÌ 5 NOVEMBRE
+            </span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">01 / 04</span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="my-auto max-w-5xl mx-auto space-y-6 text-left w-full">
+            <div class="inline-block bg-pop-purple text-white text-xs md:text-sm font-black uppercase px-3 py-1 -rotate-2">
+                🏛️ FIRENZE, 1953: GIORGIO LA PIRA
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none">
+                L'UNICA GUERRA <br><span class="text-pop-amber text-stroke">LEGITTIMA</span>
+            </h1>
+
+            <div class="bg-pop-gray p-6 md:p-8 rounded-2xl border-4 border-pop-amber shadow-[10px_10px_0px_0px_rgba(245,158,11,1)] grid md:grid-cols-12 gap-6 items-center">
+                <!-- Immagine di Giorgio La Pira -->
+                <div class="md:col-span-4 aspect-[3/4] w-full rounded-xl overflow-hidden border-2 border-white/20">
+                    <img 
+                        src="https://upload.wikimedia.org/wikipedia/it/5/5e/Giorgio-LaPira.jpg" 
+                        alt="Giorgio La Pira" 
+                        class="w-full h-full object-cover grayscale contrast-125"
+                    />
+                </div>
+
+                <div class="md:col-span-8 space-y-4">
+                    <h3 class="text-2xl font-black uppercase text-white leading-tight">
+                        La storia del "Sindaco Santo"
+                    </h3>
+                    <p class="text-sm md:text-base font-medium text-gray-300 leading-relaxed">
+                        Giorgio La Pira, sindaco e uomo di profonda fede, dichiarò che di fronte alla miseria, alla fame e alla disoccupazione esiste un solo tipo di scontro ammesso.
+                    </p>
+                    <div class="bg-pop-dark p-4 rounded-xl border-l-4 border-pop-amber space-y-1">
+                        <span class="text-xs font-mono text-pop-amber font-bold uppercase block">💬 LA SUA PROVOCAZIONE</span>
+                        <blockquote class="text-sm md:text-base font-black text-white italic">
+                            "La battaglia contro la fame e la povertà è l'unica guerra che gli uomini hanno il dovere di combattere."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-mono text-gray-400">
+            <span>Dalla narrazione alla vita...</span>
+            <a href="#slide-2" class="text-pop-amber font-black hover:underline flex items-center gap-1 uppercase">
+                ENTRA NELLA DOMANDA &darr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: DOMANDE DI SENSO (NO SPOILER) -->
+    <section id="slide-2" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-amber text-pop-dark">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-black/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider text-pop-dark">Riflessione Guidata</span>
+            <span class="text-xs md:text-sm font-mono text-black/60">Slide 2 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto grid md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-7 space-y-6">
+                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tight leading-none">
+                    Contro cosa <span class="bg-black text-pop-amber px-2">LOTTARE</span>?
+                </h2>
+                
+                <ul class="space-y-4 text-base md:text-xl font-bold">
+                    <li class="flex items-center gap-3">
+                        <span class="bg-pop-purple text-white px-2.5 py-1 text-sm font-black">1</span>
+                        <span>Se dovessimo fare una "guerra legittima", quale ingiustizia vorremmo sconfiggere?</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="bg-pop-purple text-white px-2.5 py-1 text-sm font-black">2</span>
+                        <span>È più facile combattere gli altri con le parole o allearsi per risolvere un problema comune?</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="bg-pop-purple text-white px-2.5 py-1 text-sm font-black">3</span>
+                        <span>Cosa trasforma un semplice "aiutino" in un cambiamento reale e duraturo?</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-5 bg-black text-white p-8 border-4 border-pop-purple shadow-[8px_8px_0px_0px_rgba(124,58,237,1)] space-y-3">
+                <span class="text-xs font-mono font-bold uppercase text-pop-amber block">// L'INTUIZIONE DI LA PIRA</span>
+                <p class="text-2xl font-black uppercase leading-tight text-pop-amber">
+                    "La vera forza di una comunità non si misura dalle armi, ma dalla cura dei più deboli."
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-black/10 text-xs font-bold text-black">
+            <a href="#slide-1" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-3" class="bg-black text-pop-amber px-4 py-2 font-black uppercase hover:bg-pop-purple hover:text-white transition">
+                CONTINUA &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: ATTUALIZZAZIONE & GIUSTIZIA VS ASSISTENZIALISMO -->
+    <section id="slide-3" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-dark text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-mono font-bold uppercase tracking-wider text-pop-amber">Inquadramento Ecclesiale</span>
+            <span class="text-xs md:text-sm font-mono text-gray-400">Slide 3 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-5xl mx-auto w-full grid md:grid-cols-12 gap-8 items-center">
+            <div class="md:col-span-6 space-y-6">
+                <span class="bg-pop-amber text-black px-3 py-1 text-xs font-black uppercase">Oltre l'Assistenzialismo</span>
+                <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight">Costruire Giustizia</h2>
+
+                <div class="space-y-4 font-medium text-base">
+                    <div class="p-4 bg-pop-gray border-l-4 border-pop-purple rounded-r-xl">
+                        <span class="text-xs font-mono font-bold text-pop-amber uppercase block mb-1">💡 DALL'ELEMOSINA ALLA CONDIVISIONE</span>
+                        <p class="text-sm md:text-lg font-bold text-white">
+                            Rispondere alla povertà non significa dare solo "scarti o monete", ma costruire strutture di giustizia e pari dignità.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-pop-gray border-l-4 border-pop-amber rounded-r-xl">
+                        <p class="text-sm md:text-lg font-bold text-white">
+                            A scuola, fare giustizia significa non lasciare nessuno indietro e creare una comunità inclusiva.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 bg-pop-gray p-8 rounded-3xl border-2 border-pop-amber text-center space-y-4 shadow-[10px_10px_0px_0px_rgba(245,158,11,1)]">
+                <div class="text-xs font-mono uppercase text-gray-400 tracking-widest">// COMUNITÀ IN AZIONE</div>
+                <div class="text-3xl md:text-4xl font-black text-pop-amber uppercase font-sans">
+                    DIGNITÀ PER TUTTI
+                </div>
+                <p class="text-sm md:text-base text-gray-300 font-medium leading-relaxed">
+                    Un'unica grande alleanza contro la solitudine e il disagio: è questa la vera "guerra" che vale la pena combattere insieme.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-4 border-t border-white/10 text-xs font-mono text-gray-400">
+            <a href="#slide-2" class="hover:underline">&larr; Indietro</a>
+            <a href="#slide-4" class="text-pop-amber font-black uppercase hover:underline">Sintesi Finale &rarr;</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: PAROLA GUIDA -->
+    <section id="slide-4" class="min-h-screen w-full flex flex-col justify-between p-6 md:p-12 bg-pop-purple text-white">
+        <!-- Header -->
+        <div class="flex justify-between items-center border-b border-white/20 pb-4">
+            <span class="text-xs md:text-sm font-black uppercase tracking-wider">Parola di Vita</span>
+            <span class="text-xs md:text-sm font-mono text-white/60">Slide 4 di 4</span>
+        </div>
+
+        <div class="my-auto max-w-4xl mx-auto text-center space-y-8">
+            <div class="inline-block bg-black text-pop-amber font-mono text-xs uppercase px-3 py-1 font-bold">
+                GIORGIO LA PIRA (1953)
+            </div>
+
+            <blockquote class="bg-black/40 p-8 md:p-12 rounded-3xl border-2 border-pop-amber shadow-[8px_8px_0px_0px_rgba(245,158,11,1)]">
+                <p class="text-3xl md:text-6xl font-black uppercase tracking-tight leading-tight text-white">
+                    "Bisogna unire tutte le forze per abbattere l'unica vera nemica dell'uomo: la miseria."
+                </p>
+            </blockquote>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-between items-center pt-4 border-t border-white/20 text-xs font-bold uppercase">
+            <a href="#slide-3" class="hover:underline">&larr; Indietro</a>
+            <span class="bg-black text-pop-amber px-4 py-2 font-black">Buona giornata e buona comunità! ✨</span>
+        </div>
+    </section>
+
+</body>
+</html>
